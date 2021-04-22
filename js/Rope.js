@@ -5,7 +5,7 @@ class Rope{
             bodyA : body1,
             pointB : point2,
             stiffness : 0.04,
-            length : 100
+            length : 10
         }
 
         this.rope = Constraint.create(option);
@@ -17,6 +17,7 @@ class Rope{
             var pointA = this.rope.bodyA.position;
             var pointB = this.rope.pointB;
 
+            stroke("#F8C24A");
             strokeWeight(5);
             line(pointA.x, pointA.y, pointB.x, pointB.y);
         }
