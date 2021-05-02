@@ -4,7 +4,7 @@ class Rope{
         var option = {
             bodyA : body1,
             pointB : point2,
-            stiffness : 0.04,
+            stiffness : 0.004,
             length : 10
         }
 
@@ -17,7 +17,7 @@ class Rope{
             var pointA = this.rope.bodyA.position;
             var pointB = this.rope.pointB;
 
-            stroke("#F8C24A");
+            stroke(0);
             strokeWeight(5);
             line(pointA.x, pointA.y, pointB.x, pointB.y);
         }
@@ -26,5 +26,10 @@ class Rope{
 
         fly(){
             this.rope.bodyA = null;
+        }
+
+        attach(body){
+            
+            this.rope.bodyA = body;
         }
 }

@@ -1,4 +1,3 @@
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -64,36 +63,29 @@ function draw() {
   Stone_rope.display();
   stoneObj.display();
 
-  rope1.display();
-  rope2.display();
-  rope3.display();
-  rope4.display();
-  rope5.display();
-
   groundObject.display();
 
- /* if(stoneObj.isTouching(mango1)){
+  if(detectCollision(stoneObj, mango1)){
 	  rope1.fly();
-
   }
 
-  if(stoneObj.isTouching(mango2)){
+  if(detectCollision(stoneObj, mango2)){
 	rope2.fly();
 	
 }
 
- if(stoneObj.isTouching(mango3)){
+ if(detectCollision(stoneObj, mango3)){
 	rope3.fly();
 	
 }
-if(stoneObj.isTouching(mango1)){
+if(detectCollision(stoneObj, mango4)){
 	rope4.fly();
 	
 }
-if(stoneObj.isTouching(mango5)){
+if(detectCollision(stoneObj, mango5)){
 	rope5.fly();
 	
-}*/
+}
 
 }
 
@@ -103,4 +95,24 @@ function mouseDragged(){
 
 function mouseReleased(){
 	Stone_rope.fly();
+}
+
+function keyPressed(){
+	if(keyCode === 32){
+		Matter.Body.setPosition(stoneObj.body, {x:235, y: 420})
+		Stone_rope.attach(stoneObj.body);
+	}
+}
+
+function detectCollision(body1, body2){
+    if(body1.x - body2.x <= body1.width/2 + body2.width/2 && body2.x - body1.x <= body1.width/2 + body2.width/2
+       && body1.y - body2.y <= body1.height/2 + body2.height/2 && body2.y - body1.y <= body1.height/2 + body2.height/2)
+       {
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+
 }
