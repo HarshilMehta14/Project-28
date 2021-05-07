@@ -5,12 +5,14 @@ const Body = Matter.Body;
 const Render = Matter.Render;
 const Constraint=Matter.Constraint;
 
+
 var treeObj, stoneObj, groundObject;
 var Stone_rope;
 var rope1, rope2, rope3, rope4, rope5;
 var mango1, mango2, mango3, mango4, mango5;
 var world;
 var boy, stone;
+var distance;
 
 function preload(){
 	boy = loadImage("images/boy.png");
@@ -46,7 +48,10 @@ function setup() {
 	Engine.run(engine);
 
 }
+var mango1pos = mango1.body.position;
+var stonepos = stone.body.position;
 
+distance = dist(mangopos.x, mangopos.y, stonepos.x, stonepos.y);
 function draw() {
 
   background(0,255,255);
@@ -65,11 +70,11 @@ function draw() {
 
   groundObject.display();
 
-  if(detectCollision(stoneObj, mango1)){
+  if(distance <=stone.r + mango1.r){
 	  rope1.fly();
   }
 
-  if(detectCollision(stoneObj, mango2)){
+  /*if(detectCollision(stoneObj, mango2)){
 	rope2.fly();
 	
 }
@@ -85,7 +90,7 @@ if(detectCollision(stoneObj, mango4)){
 if(detectCollision(stoneObj, mango5)){
 	rope5.fly();
 	
-}
+}*/
 
 }
 
@@ -105,8 +110,8 @@ function keyPressed(){
 }
 
 function detectCollision(body1, body2){
-    if(body1.x - body2.x <= body1.width/2 + body2.width/2 && body2.x - body1.x <= body1.width/2 + body2.width/2
-       && body1.y - body2.y <= body1.height/2 + body2.height/2 && body2.y - body1.y <= body1.height/2 + body2.height/2)
+    if(body1.x - body2.x <= body1.radius/2 + body2.radius/2 && body2.x - body1.x <= body1.radius/2 + body2.radius/2
+       && body1.y - body2.y <= body1.radius/2 + body2.radius/2 && body2.y - body1.y <= body1.radius/2 + body2.radius/2)
        {
            return true;
        }
