@@ -48,10 +48,7 @@ function setup() {
 	Engine.run(engine);
 
 }
-var mango1pos = mango1.body.position;
-var stonepos = stone.body.position;
 
-distance = dist(mangopos.x, mangopos.y, stonepos.x, stonepos.y);
 function draw() {
 
   background(0,255,255);
@@ -70,27 +67,27 @@ function draw() {
 
   groundObject.display();
 
-  if(distance <=stone.r + mango1.r){
+  if(detectCollision(mango1, stoneObj)){
 	  rope1.fly();
   }
 
-  /*if(detectCollision(stoneObj, mango2)){
+  if(detectCollision(mango2, stoneObj)){
 	rope2.fly();
 	
 }
 
- if(detectCollision(stoneObj, mango3)){
+ if(detectCollision(mango3, stoneObj)){
 	rope3.fly();
 	
 }
-if(detectCollision(stoneObj, mango4)){
+if(detectCollision(mango4, stoneObj)){
 	rope4.fly();
 	
 }
-if(detectCollision(stoneObj, mango5)){
+if(detectCollision(mango5, stoneObj)){
 	rope5.fly();
 	
-}*/
+}
 
 }
 
@@ -109,9 +106,14 @@ function keyPressed(){
 	}
 }
 
-function detectCollision(body1, body2){
-    if(body1.x - body2.x <= body1.radius/2 + body2.radius/2 && body2.x - body1.x <= body1.radius/2 + body2.radius/2
-       && body1.y - body2.y <= body1.radius/2 + body2.radius/2 && body2.y - body1.y <= body1.radius/2 + body2.radius/2)
+function detectCollision(mango, stone){
+	var mangopos = mango.body.position;
+	var stonepos = stone.body.position;
+
+	distance = dist(mangopos.x, mangopos.y, stonepos.x, stonepos.y);
+
+
+    if(distance < (mango.r + stone.r))
        {
            return true;
        }
@@ -119,5 +121,4 @@ function detectCollision(body1, body2){
        {
            return false;
        }
-
 }
